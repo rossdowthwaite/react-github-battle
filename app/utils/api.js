@@ -8,20 +8,17 @@ function getProfile (username) {
   return axios.get('https://api.github.com/users/' + username + params)
     .then(function (user) {
       return user.data;
-    })
+    });
 }
 
 function getRepos (username) {
-  return axios.get('https://api.github.com/users/' + username + '/repos' + params + '&per_page=100')
-    .then(function (user) {
-      return user.data;
-    })
+  return axios.get('https://api.github.com/users/' + username + '/repos' + params + '&per_page=100');
 }
 
 function getStarCount (repos) {
   return repos.data.reduce(function (count, repo) {
-    return count + repo.stargazers_count;
-  }, 0)
+    return count + repo.stargazers_count
+  }, 0);
 }
 
 function calculateScore (profile, repos) {
@@ -48,20 +45,21 @@ function getUserData (player) {
       profile: profile,
       score: calculateScore(profile, repos)
     }
-  })
+  });
 }
 
 function sortPlayers (players) {
+  console.log(players);
   return players.sort(function (a,b) {
-    return b.score - a.score
-  })
+    return b.score - a.score;
+  });
 }
 
 module.exports = {
   battle: function (players) {
     return axios.all(players.map(getUserData))
       .then(sortPlayers)
-      .catch(handleError)
+      .catch(handleError);
   },
 
   fetchPopularRepos: function (language) {
@@ -70,6 +68,6 @@ module.exports = {
     return axios.get(encodedURI)
       .then(function (response) {
         return response.data.items;
-      })
-   }
- }
+      });
+  }
+};

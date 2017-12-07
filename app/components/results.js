@@ -1,7 +1,19 @@
 var React = require('react');
+var queryString = require('query-string');
+var api = require('../utils/Api');
 
 class Results extends React.Component {
-  render() { d
+  componentDidMount () {
+    var players = queryString.parse(this.props.location.search);
+    api.battle([
+      players.playerOneName,
+      players.playerTwoName
+    ]).then(function (results) {
+      console.log(results);
+    })
+  }
+
+  render() {
     return (
       <div>Results</div>
     )
