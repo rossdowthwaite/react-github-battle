@@ -3,9 +3,9 @@ const sec = "YOUR_SECRET_ID";
 const params = `?client_id=${id}&client_secret=${sec}`;
 
 async function getProfile (username) {
-  const response = await fetch`https://api.github.com/users/${username}${params}`)
+  const response = await fetch(`https://api.github.com/users/${username}${params}`)
 
-  return repsonse.json();
+  return response.json();
 }
 
 async function getRepos (username) {
@@ -49,8 +49,8 @@ export async function battle (players) {
     .catch(handleError);
 
   return results === null
-    ? Results
-    : sortPlayers(players);
+    ? results
+    : sortPlayers(results);
 
 }
 

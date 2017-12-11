@@ -8,7 +8,7 @@ import Loading from './Loading';
 
 function Profile ({info}) {
   return (
-   <PlayerPreview avatar={info.avatar.url} username={info.login}>
+   <PlayerPreview avatar={info.avatar_url} username={info.login}>
      <ul className='space-list-items'>
       {info.name && <li>{info.name}</li>}
       {info.location && <li>{info.location}</li>}
